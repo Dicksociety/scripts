@@ -13,35 +13,35 @@
 #change  mac
 #pour rentrer une foi dans la boucle
 a='2'
-while [ $a == '2' ]
+while [ $a != '1' ] && [ $a != '0' ]
 do
 echo Voulez vous changez votre adresse mac \(oui=1 non=0\)?
 read macsyn
 a=macsyn
-if [ $macsyn = '1' ]
+if [ $macsyn == '1' ]
 then
 	 #pour rentrer une foi dans la boucle
 	 quoi=0
-	while [ $quoi !=  '1' ] || [ $quoi !=  '2' ] #boucle pour recomencer si c'est diferrent de 1 ou 2
+	while [ $quoi !=  '1' ] && [ $quoi !=  '2' ] #boucle pour recomencer si c'est diferrent de 1 ou 2
 	do
 		echo 1\)adresse random 
 		echo 2\)choix adresse
 		read quoi0
 		
-		quoi=quoi0
+		quoi0=quoi
 	
 	
 		echo Quelle est votre interface reseau \(eth0 wlan0 etc...\)
 		read interface
 	
-		if [ $quoi = '1' ]
+		if [ $quoi == '1' ]
 		then
 			mac0 = openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'
 			ifconfig $interface down
 			ifconfig $interface hw ether $mac0
 			ifconfig $interface up
 	
-		elif [ $quoi = '2' ]
+		elif [ $quoi == '2' ]
 		then
 			echo votre nouvelle adresse mac:
 			read mac1
@@ -53,7 +53,7 @@ then
 		fi
 	
 	done
-elif [ $macsyn = '0' ]
+elif [ $macsyn == '0' ]
 then
 	a=$macsyn
 	echo c est risqué de ne pas changer mais c vous le chef!
