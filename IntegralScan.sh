@@ -10,7 +10,7 @@
 
 #A utiliser avec precaution car certains scans sont facilement detectable, ceci seront notifié et vous pourrez ainsi facilement les commentez
 
-#change  mac
+#__________________________________________change  mac_____________________________________________
 #pour rentrer une foi dans la boucle
 a='2'
 while [ $a != '1' ] && [ $a != '0' ]
@@ -49,6 +49,9 @@ then
 			  then
 			  	quoi='1'
 			  	a='1'
+			  	echo Votre nouvelle configuration:
+				ifconfig
+
 			  fi
 			 
 		elif [ $quoi0 == '2' ]
@@ -70,6 +73,8 @@ then
 			  then
 			  	quoi='1'
 			  	a='1'
+			  	echo Votre nouvelle configuration:
+				 echo ifconfig $interface
 			  fi
 			 
 		else
@@ -85,12 +90,9 @@ else
 	echo choix 1 ou 0 pas autre chose!!
 fi
 done
+#________________________________________________________________________________________________
 
 
-# pareil qu'au dessus mais pour ip
-#echo Voulez vous changez votre adresse ip ?
-#echo 1)adresse random 
-#echo 2)choix adresse
 
 echo Entrez l\'ip de la machine cible
 
