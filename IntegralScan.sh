@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#script développé par Daffy_D
+#script développé par Daffy_D et Dslam
 
 #A utiliser en root
 
@@ -21,38 +21,62 @@ a=macsyn
 if [ $macsyn == '1' ]
 then
 	 #pour rentrer une foi dans la boucle
-	 quoi=0
+	 quoi='5'
 	while [ $quoi !=  '1' ] && [ $quoi !=  '2' ] #boucle pour recomencer si c'est diferrent de 1 ou 2
 	do
 		echo 1\)adresse random 
 		echo 2\)choix adresse
 		read quoi0
 		
-		quoi0=quoi
+		quoi=quoi0
 	
-	
-		echo Quelle est votre interface reseau \(eth0 wlan0 etc...\)
-		read interface
-	
-		if [ $quoi == '1' ]
+		if [ $quoi0 == '1' ]
 		then
+			echo Quelle est votre interface reseau \(eth0 wlan0 etc...\)
+			read interface
 			mac0 = openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'
 			ifconfig $interface down
 			ifconfig $interface hw ether $mac0
 			ifconfig $interface up
-	
-		elif [ $quoi == '2' ]
+			echo OK
+			#sorti de boucle
+			 
+			
+			 
+			  echo voulez vous continuer? \(1=oui autres_touches=non\)
+			  read c
+			  if [ $c == '1' ]
+			  then
+			  	quoi='1'
+			  	a='1'
+			  fi
+			 
+		elif [ $quoi0 == '2' ]
 		then
+			echo Quelle est votre interface reseau \(eth0 wlan0 etc...\)
+			read interface
 			echo votre nouvelle adresse mac:
 			read mac1
 			ifconfig $interface down
 			ifconfig $interface hw ether $mac1
 			ifconfig $interface up
+			echo OK
+			 #sorti de boucle
+			  
+			  
+			  echo voulez vous continuer? \(1=oui autres_touches=non\)
+			  read c
+			  if [ $c == '1' ]
+			  then
+			  	quoi='1'
+			  	a='1'
+			  fi
+			 
 		else
 			echo choix compris entre 1 et 2 recommencé
 		fi
-	
-	done
+		done
+		
 elif [ $macsyn == '0' ]
 then
 	a=$macsyn
