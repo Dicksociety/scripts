@@ -4,7 +4,7 @@
 
 #A utiliser en root
 
-#0.0.4
+#0.0.5
 
 #Réalise de nombreux scans sur la machine cible
 
@@ -23,5 +23,7 @@ echo Scan Xmas
 nmap -sX -p- -Pn $ip_cible -oX XmasResult.xml
 echo Scan Null
 nmap -sN -p- -Pn $ip_cible -oX NullResult.xml
+echo Scan OS
+nmap -o -p- -Pn $ip_cible -oX OSResult.xml
 echo Test de vulnérabilité
 nmap --script vuln $ip_cible -oX VulnResult.xml
