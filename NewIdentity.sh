@@ -1,23 +1,23 @@
 #!/bin/bash
 
-#Développé par Dslam édité par Daffy_D
+#by Dslam edit by Daffy_D
 
-#A utiliser en root
+#Use in root
 
 #0.0.1
 
-#Change l'adresse ip et l'adresse mac
+#Change IP and MAC adress
 
-echo Quelle est votre interface reseau \(eth0 wlan0 etc...\)
+echo Enter your network interface \(eth0 wlan0 etc...\)
 read interface
-echo Changement adresse mac...
+echo MAC adress is changing...
 mac0 = openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'
 ifconfig $interface down
 ifconfig $interface hw ether $mac0
-echo Adresse mac changé
+echo MAC adress change
 
-echo Changement de l\'adresse ip...
+echo IP adress is changing...
 ip0 = openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'
 ifconfig $interface $ip0
 ifconfig $interface up
-echo Adresse ip changé
+echo IP adress change

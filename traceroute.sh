@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#script développé par Daffy_D et Dslam
+#by Dslam
 
-#A utiliser en root
+#Use in root
 
 traceroute www.google.com > trace.xml

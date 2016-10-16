@@ -1,29 +1,31 @@
 #!/bin/bash
 
-#script développé par Daffy_D et Dslam
+#Sorry for our english but you can help us to traduct, make a request on github. If you do this we can add your name on the script
 
-#A utiliser en root
+#by Daffy_D et Dslam
 
-#0.0.5
+#Use in root
 
-#Réalise de nombreux scans sur la machine cible
+#0.0.6
 
-#A utiliser avec precaution car certains scans sont facilement detectable
+#Make some scan on the target's machine
 
-echo Entrez l\'ip de la machine cible
+#Be carefull when you use this script because it's illegal and some scan are easily detectable
 
-read ip_cible
-echo Scan TCP
-nmap -sS -p- -Pn $ip_cible -oX TCPResult.xml
+echo Enter target\'s ip
+
+read ip_target
+
+echo Vuln scan and os detection
+nmap --script vuln -O $ip_target -v -oX VulnResult.xml > VulnResult.txt
+
+echo Xmas scan
+#Work bad on a windows target
+nmap -sX -p- -Pn $ip_target -v -oX XmasResult.xml > XmasResult.txt
+
+echo Null scan
+nmap -sN -p- -Pn $ip_target -v -oX NullResult.xml > NullResult.txt
+
 echo Scan UDP
-#Attention plus facilement detectable
-nmap -sUV $ip_cible -oX UDPResult.xml
-echo Scan Xmas
-#Pas très efficace sur une machine windows
-nmap -sX -p- -Pn $ip_cible -oX XmasResult.xml
-echo Scan Null
-nmap -sN -p- -Pn $ip_cible -oX NullResult.xml
-echo Scan OS
-nmap -o -p- -Pn $ip_cible -oX OSResult.xml
-echo Test de vulnérabilité
-nmap --script vuln $ip_cible -oX VulnResult.xml
+#Easily detectable and very long
+nmap -sUV $ip_target -v -oX UDPResult.xml > UDPResult.txt
